@@ -10,11 +10,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
+
 import { RestService } from './rest.service'; // Do need?
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+      AppComponent
+  ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
