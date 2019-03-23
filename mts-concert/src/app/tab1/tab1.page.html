@@ -1,12 +1,21 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab One
+      МТС Концерт
     </ion-title>
-  </ion-toolbar>
+
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+
+
+		<!-- 	<button ion-button round icon-end clear (click)="getEvent()">
+				<u>Get event</u><ion-icon name="refresh"></ion-icon>
+			</button>
+
+
     <ion-card class="welcome-card">
       <ion-img src="/assets/shapes.svg"></ion-img>
       <ion-card-header>
@@ -37,5 +46,69 @@
         <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
         <ion-label>Theme Your App</ion-label>
       </ion-item>
-    </ion-list>
+    </ion-list> -->
+
+      <ion-fab>
+        <ion-buttons >
+          <ion-button>
+            <ion-icon name="time"></ion-icon>
+            <a href="#Time"></a>
+          </ion-button>
+          <ion-button>
+            <ion-icon name="list"></ion-icon>
+            <a href="#News"></a>
+            </ion-button>
+          <ion-button><ion-icon name="alert"></ion-icon>
+            <a href="#Info"></a>
+          </ion-button>
+        </ion-buttons>
+      </ion-fab>
+
+    <ion-card style="height:200px;" id="Time">
+      <ion-card-header>
+        <ion-card-subtitle>
+          <ion-icon name="time"> slot="start"></ion-icon>
+          До начала концерта
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-fab vertical="center" horizontal="center" >
+        <ion-fab-button color="warning" style="height:130px; width:130px; margin-left:-38px; margin-top:20px;">
+          00:20
+        </ion-fab-button>
+      </ion-fab>
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-card style="height:200px;"  id="News">
+
+      <ion-card-header>
+        <ion-card-subtitle>
+          <ion-icon name="list"></ion-icon>
+          Новости концерта
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-card style="height:200px;" id="Info">
+
+      <ion-card-header>
+        <ion-card-subtitle>
+          <ion-icon name="alert"></ion-icon>
+          Об исполнителе
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+
+      </ion-card-content>
+
+    </ion-card>
+
 </ion-content>
