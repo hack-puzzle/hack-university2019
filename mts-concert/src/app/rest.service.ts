@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 		headers: new HttpHeaders({'Content-Type': 'application/json'})
 	};
 	
-	const apiUrl = 'https://smth';
+	const apiUrl = 'http://hack-university-server.herokuapp.com/';
 
 @Injectable({
 	providedIn: 'root'
@@ -17,7 +17,8 @@ export class RestService {
   
 	getEvent(id) {
 		return new Promise((resolve, reject) => {
-			this.http.get(apiUrl+"/events/"+id)
+			// let headers = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem('token'));
+			this.http.get(apiUrl+"concert-start")
 				.subscribe(res => {					
 					console.log(res); // log
 					resolve(res);
@@ -27,4 +28,5 @@ export class RestService {
 				});
 		});
 	}
+	
 }

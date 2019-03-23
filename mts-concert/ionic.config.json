@@ -1,5 +1,7 @@
 {
   "name": "Concert",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
