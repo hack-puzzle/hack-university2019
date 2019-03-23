@@ -13,9 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { RestService } from './rest.service'; // Do need?
 import { UpdateService } from './update.service'; // Do need?
-import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview/ngx';
-import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
-import { ScreenOrientationService } from "./services/screen-orientation.service";
 
 @NgModule({
   declarations: [
@@ -28,9 +25,7 @@ import { ScreenOrientationService } from "./services/screen-orientation.service"
       SplashScreen,
 	  UpdateService,
       RestService, // Do need?
-      { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-      ScreenOrientation,
-      ScreenOrientationService
+      { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })
