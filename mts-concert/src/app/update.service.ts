@@ -15,9 +15,10 @@ export class UpdateService {
 	update(data) {
 		this.data = data;
 		this.startTime = this.data.startTime;
-		for (var notification of this.data.notificationList) {
-			this.notificationList.push(notification);
-		}
+		this.notificationList = this.data.notificationList;
+	//	for (var notification of this.data.notificationList) {
+	//		this.notificationList.push(notification);
+	//	}
 		this.currentSongId = this.data.currentSongId;
 		console.log(data);
 	}
