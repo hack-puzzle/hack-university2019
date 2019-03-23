@@ -7,3 +7,11 @@
   height: auto;
   min-height: 400px;
 }
+
+.butt {
+  position: fixed; /* Фиксированное положение */
+    right: 50px; /* Расстояние от правого края окна браузера */
+    top: 20%;
+	width:20px;
+  float:right;
+}

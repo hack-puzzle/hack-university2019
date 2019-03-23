@@ -48,41 +48,49 @@
       </ion-item>
     </ion-list> -->
 
-      <ion-fab>
+      <ion-fab class="butt">
         <ion-buttons >
-          <ion-button>
-            <ion-icon name="time"></ion-icon>
-            <a href="#Time"></a>
+          <ion-grid>
+            <ion-row>
+          <ion-button href="#time">
+              <ion-icon name="time"></ion-icon>
           </ion-button>
-          <ion-button>
-            <ion-icon name="list"></ion-icon>
-            <a href="#News"></a>
+          </ion-row>
+          <ion-row>
+          <ion-button href="#news">
+              <ion-icon name="list"></ion-icon>
             </ion-button>
-          <ion-button><ion-icon name="alert"></ion-icon>
-            <a href="#Info"></a>
+            </ion-row>
+            <ion-row>
+        <ion-button href="#info">
+            <ion-icon name="alert"></ion-icon>
           </ion-button>
+          </ion-row>
+          </ion-grid>
         </ion-buttons>
       </ion-fab>
 
-    <ion-card style="height:200px;" id="Time">
+    <div id="time"><ion-card style="height:200px;" >
       <ion-card-header>
         <ion-card-subtitle>
-          <ion-icon name="time"> slot="start"></ion-icon>
+          <ion-icon name="time"></ion-icon>
           До начала концерта
         </ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
         <ion-fab vertical="center" horizontal="center" >
-        <ion-fab-button color="warning" style="height:130px; width:130px; margin-left:-38px; margin-top:20px;">
+          <ion-fab-button color="warning" style="height:130px; width:130px; margin-left:-38px; margin-top:20px;">
           00:20
-        </ion-fab-button>
+          </ion-fab-button>
       </ion-fab>
       </ion-card-content>
 
     </ion-card>
+    </div>
 
-    <ion-card style="height:200px;"  id="News">
+    <div id="news">
+      <ion-card style="height:200px;" >
 
       <ion-card-header>
         <ion-card-subtitle>
@@ -92,13 +100,13 @@
       </ion-card-header>
 
       <ion-card-content>
-
       </ion-card-content>
 
     </ion-card>
 
-    <ion-card style="height:200px;" id="Info" class="artist-info-height">
-
+    </div>
+    <div id="info">
+      <ion-card style="height:200px;" id="Info" class="artist-info-height">
       <ion-card-header>
         <ion-card-subtitle>
           <ion-icon name="alert"></ion-icon>
@@ -110,5 +118,5 @@
       </ion-card-content>
 
     </ion-card>
-
+  </div>
 </ion-content>

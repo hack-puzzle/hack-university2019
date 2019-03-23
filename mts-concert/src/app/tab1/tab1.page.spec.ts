@@ -24,3 +24,5 @@ describe('Tab1Page', () => {
     expect(component).toBeTruthy();
   });
 });
+
+addRipple(pageX: number, pageY: number) => Promise<() => void>;
