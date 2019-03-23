@@ -6,15 +6,19 @@ import { Injectable } from '@angular/core';
 export class UpdateService {
 	
 	startTime: any;
-	notificationList: any;
+	notificationList: any[] = [];
 	currentSongId: any;
+	data: any;
 
 	constructor() { }
   
 	update(data) {
-		this.startTime = data.startTime;
-		this.notificationList = data.notificationList;
-		this.currentSongId = data.currentSongId;
+		this.data = data;
+		this.startTime = this.data.startTime;
+		for (var notification of this.data.notificationList) {
+			this.notificationList.push(notification);
+		}
+		this.currentSongId = this.data.currentSongId;
 		console.log(data);
 	}
 }

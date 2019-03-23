@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { RestService } from './rest.service'; // Do need?
 import { UpdateService } from './update.service'; // Do need?
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { ScreenOrientationService } from "./services/screen-orientation.service";
 

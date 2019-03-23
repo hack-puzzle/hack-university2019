@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RestService } from '../rest.service';
 import { UpdateService } from '../update.service';
 
 @Component({
@@ -9,60 +8,64 @@ import { UpdateService } from '../update.service';
 })
 export class Tab1Page {
 	
-	eventId = { eventId:''}
+	signInData = { name: '', approved: false};
 	
-	startTime : any;
+	startTime = this.updateService.startTime;
+	notificationList : any[] = [];
+	currentSongId = -1;
+	songList: any[] = [];
+	
+	artistInfo: any;
 	
 	secondsRemaining;
 	displayTime;
 	hasFinished : boolean = false;
 	
-	constructor(public restService: RestService, public updateService: UpdateService) {
+	constructor(public updateService: UpdateService) {
 		if(localStorage.getItem("token")) {
 		//	this.isLoggedIn = true;
 		}
 	}
 	
-	ionViewWillEnter(){
-		if (this.startTime == undefined) {
-		//	this.getEvent();
-		//	this.getData();
-			if (this.updateService.startTime != undefined) {
-				this.startTime = this.updateService.startTime;
-				this.secondsRemaining = (Date.parse(this.startTime) - Date.now()) / 1000;
-				this.timerTick();
-			}			
-			console.log("hohoho");
-			this.logTime();
-		} else if (this.startTime != this.updateService.startTime) {
-			this.startTime = this.updateService.startTime;
+	ionViewWillEnter(){	
+		if (this.displayTime == undefined && this.startTime != undefined) {
 			this.secondsRemaining = (Date.parse(this.startTime) - Date.now()) / 1000;
-			console.log("Changed!!!");
 			this.timerTick();
 		}
+		console.log("hohoho");
+		this.logTime();
 	}
 	
 	logTime() {
 		setTimeout(() => {
-			console.log("hehehe " + this.startTime + " " + this.displayTime);
+			if (this.displayTime == undefined && this.startTime != undefined) {
+				this.secondsRemaining = (Date.parse(this.startTime) - Date.now()) / 1000;
+				this.timerTick();
+			} else if (this.startTime != this.updateService.startTime) {
+				setTimeout(() => {
+					this.secondsRemaining = 0;
+				}, 1000);
+				this.startTime = this.updateService.startTime;
+				this.secondsRemaining = (Date.parse(this.startTime) - Date.now()) / 1000;
+				this.timerTick();
+			}
+			if (this.notificationList.length != this.updateService.notificationList.length) {
+				this.notificationList = this.updateService.notificationList;
+			}
+			console.log("hehehe " + this.notificationList.length + " " + this.startTime + " " + this.updateService.startTime + " " + this.displayTime);
 			this.logTime();
         }, 5000);		
 	}
 	
-	getEvent() {
-		this.restService.getEvent(this.eventId).then((result) => {
-			this.startTime = result;
-			this.startTime = this.startTime.time;
-			this.secondsRemaining = (Date.parse(this.startTime) - Date.now()) / 1000;
-		//	this.secondsRemaining = (Date.parse("2019-03-23T18:57:00") - Date.now()) / 1000;
-			this.timerTick();
-		}, (err) => {
-		});
+	signIn() {
+		console.log(this.signInData);
+		this.signInData.approved = true;
+		console.log(this.signInData);
 	}
 	
 	timerTick() {
 		setTimeout(() => {
-			if (this.secondsRemaining > 0) {
+			if (this.secondsRemaining > 0 && this.startTime == this.updateService.startTime) {
 				this.secondsRemaining--;
 				this.displayTime = this.getSecondsAsDigitalClock(this.secondsRemaining);
                 this.timerTick();

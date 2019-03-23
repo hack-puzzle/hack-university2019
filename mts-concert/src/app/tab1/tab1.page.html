@@ -30,8 +30,32 @@
           </ion-grid>
         </ion-buttons>
       </ion-fab>
+	  
+	<div id="login" *ngIf="signInData.approved == false || signInData.name == ''"><ion-card style="height:200px;" >
+      <ion-card-header>
+        <ion-card-subtitle>
+          <ion-icon name="time"></ion-icon>
+          Как Вас зовут?
+        </ion-card-subtitle>
+      </ion-card-header>
 
-    <div id="time"><ion-card style="height:200px;" >
+      <ion-card-content>
+		<form (submit)="signIn()">
+			<ion-item style="width:80%">
+				<ion-input readonly="false" required [(ngModel)]="signInData.name" name="name" type="text" placeholder="Имя" text-center></ion-input>
+			</ion-item>
+			<br>
+				<button ion-button round icon-end type="submit">
+					<ion-icon name="checkmark-circle-outline"></ion-icon>
+				</button>
+		</form>
+      </ion-card-content>
+
+    </ion-card>
+    </div>
+	  
+
+    <div id="time" *ngIf="currentSongId == -1"><ion-card style="height:200px;" >
       <ion-card-header>
         <ion-card-subtitle>
           <ion-icon name="time"></ion-icon>
@@ -39,10 +63,37 @@
         </ion-card-subtitle>
       </ion-card-header>
 
-      <ion-card-content>
+      <ion-card-content *ngIf="displayTime != undefined && displayTime != '00:00:00'">
         <ion-fab vertical="center" horizontal="center" >
           <ion-fab-button color="warning" style="height:130px; width:130px; margin-left:-38px; margin-top:20px;">
-          {{displayTime}}
+          <p>{{displayTime}}</p>
+          </ion-fab-button>
+      </ion-fab>
+      </ion-card-content>
+	  
+	  <ion-card-content *ngIf="displayTime != undefined && displayTime == '00:00:00'">
+        <ion-fab vertical="center" horizontal="center" >
+          <ion-fab-button color="warning" style="height:130px; width:130px; margin-left:-38px; margin-top:20px;">
+          <p>Концерт начался!</p>
+          </ion-fab-button>
+      </ion-fab>
+      </ion-card-content>
+
+    </ion-card>
+    </div>
+	    
+	<div id="time" *ngIf="currentSongId != -1"><ion-card style="height:200px;" >
+      <ion-card-header>
+        <ion-card-subtitle>
+          <ion-icon name="time"></ion-icon>
+          Текущая песня
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-fab vertical="center">
+          <ion-fab-button color="warning" style="height:130px; width:130px; margin-left:-38px; margin-top:20px;">
+          <p>{{songList[currentSongId]}}</p>
           </ion-fab-button>
       </ion-fab>
       </ion-card-content>
@@ -61,6 +112,13 @@
       </ion-card-header>
 
       <ion-card-content>
+		<ion-list inset>
+			<ion-item *ngFor="let notification of notificationList" >
+				{{notification.text}}
+				<br>
+				{{notification.time}}
+			</ion-item>
+		</ion-list>
       </ion-card-content>
 
     </ion-card>
