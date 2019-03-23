@@ -1,20 +1,31 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { RestService } from '../rest.service';
+import {ScreenOrientationService} from "../services/screen-orientation.service";
 
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+	selector: 'app-tab3',
+	templateUrl: 'tab3.page.html',
+	styleUrls: ['tab3.page.scss'],
+	providers: [
+		ScreenOrientationService,
+		ScreenOrientation
+	]
 })
 export class Tab3Page {
-	
-	eventId = { eventId:''}
+
+	eventId = { eventId:''};
 	time : any;
+
+	screenOrientationType = this.screenOrientationService.screenOrientation.type;
 	
-	constructor(public restService: RestService) {
+	constructor(public restService: RestService, private screenOrientationService: ScreenOrientationService) {
 		if(localStorage.getItem("token")) {
 		//	this.isLoggedIn = true;
 		}
+
+		this.screenOrientationService.screenOrientation.onChange().subscribe(() => {
+			this.screenOrientationType = this.screenOrientationService.screenOrientation.type;
+		});
 	}
 	
 	
@@ -26,5 +37,9 @@ export class Tab3Page {
 		}, (err) => {
 			
 		});
+	}
+
+	changeOrientation() {
+		this.screenOrientationService.screenOrientation.lock(this.screenOrientationService.screenOrientation.ORIENTATIONS.LANDSCAPE);
 	}
 }
