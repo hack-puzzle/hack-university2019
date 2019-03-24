@@ -49,8 +49,9 @@ export class RestService {
 		this.getRequest(apiUrl + "concert-update")
 			.then(res => {
 				this.updateService.update(res);
+				timer(5000).subscribe(() => this.longPolling());
 			})
-			.finally(() => {
+			.catch(() => {
 				timer(5000).subscribe(() => this.longPolling());
 			});
 	}
